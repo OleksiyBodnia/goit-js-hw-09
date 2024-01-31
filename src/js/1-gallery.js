@@ -71,39 +71,48 @@ const images = [
 
   const galleryContainer = document.querySelector(".gallery")
 
-  function createGalleryItem(image){
-    const galleryItem = document.createElement("li");
-    galleryItem.classList.add("gallery-item");
+  // function createGalleryItem(image){
+  //   const galleryItem = document.createElement("li");
+  //   galleryItem.classList.add("gallery-item");
     
-    const galleryLink = document.createElement("a");
-    galleryLink.classList.add("gallery-link");
-    galleryLink.href = image.original;
+  //   const galleryLink = document.createElement("a");
+  //   galleryLink.classList.add("gallery-link");
+  //   galleryLink.href = image.original;
 
-    const galleryImage = document.createElement("img");
-    galleryImage.classList.add("gallery-image");
-    galleryImage.src = image.preview;
-    galleryImage.alt = image.description;
+  //   const galleryImage = document.createElement("img");
+  //   galleryImage.classList.add("gallery-image");
+  //   galleryImage.src = image.preview;
+  //   galleryImage.alt = image.description;
 
-    galleryLink.addEventListener("click", (event) => {
-        event.preventDefault();
-    })
+  //   galleryLink.addEventListener("click", (event) => {
+  //       event.preventDefault();
+  //   })
 
-    galleryLink.appendChild(galleryImage);
-    galleryItem.appendChild(galleryLink);
+  //   galleryLink.appendChild(galleryImage);
+  //   galleryItem.appendChild(galleryLink);
 
-    return galleryItem;
-  }
+  //   return galleryItem;
+  // }
 
-  images.forEach(image => {
-    const galleryItem = createGalleryItem(image);
-    galleryContainer.appendChild(galleryItem);
-  });
+  // images.forEach(image => {
+  //   const galleryItem = createGalleryItem(image);
+  //   galleryContainer.appendChild(galleryItem);
+  // });
 
-  const lightbox = new SimpleLightbox(".gallery a", {
+images.forEach((image) => {
+  const imageHtml = `<li class="gallery-item">
+                        <a class="gallery-link" href="${image.original}">
+                            <img class="gallery-image" src="${image.preview}" alt="${image.description}" />
+                        </a>
+                      </li>`
+  galleryContainer.insertAdjacentHTML('beforeend', imageHtml)
+})
+
+const lightbox = new SimpleLightbox(".gallery a", {
     captionsData: "alt",
     captionPosition: "bottom",
     captionDelay: 250,
-  }); 
+}); 
 
 
 

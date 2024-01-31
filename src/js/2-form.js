@@ -23,6 +23,10 @@ form.addEventListener('input', (event) => {
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
+    if (!email.value.trim() || !message.value.trim()) {
+        alert("Будь ласка, заповніть всі поля");
+        return;
+    }
     console.log({email: email.value.trim(), message: message.value.trim()})
     localStorage.removeItem(localStorageKey);
     form.reset();
